@@ -17,6 +17,14 @@ import { AccountState as AccountStateModelImport } from "./src/models/AccountSta
 import { AccountType as AccountTypeModelImport } from "./src/models/AccountType";
 import { Address as AddressModelImport } from "./src/models/Address";
 import { AddressCreate as AddressCreateModelImport } from "./src/models/AddressCreate";
+import { AuthenticatedCardDataCreate as AuthenticatedCardDataCreateModelImport } from "./src/models/AuthenticatedCardDataCreate";
+import { CardAuthenticationResponse as CardAuthenticationResponseModelImport } from "./src/models/CardAuthenticationResponse";
+import { CardAuthenticationVersion as CardAuthenticationVersionModelImport } from "./src/models/CardAuthenticationVersion";
+import { CardCryptogram as CardCryptogramModelImport } from "./src/models/CardCryptogram";
+import { CardCryptogramCreate as CardCryptogramCreateModelImport } from "./src/models/CardCryptogramCreate";
+import { CardCryptogramType as CardCryptogramTypeModelImport } from "./src/models/CardCryptogramType";
+import { CardholderAuthentication as CardholderAuthenticationModelImport } from "./src/models/CardholderAuthentication";
+import { CardholderAuthenticationCreate as CardholderAuthenticationCreateModelImport } from "./src/models/CardholderAuthenticationCreate";
 import { ChargeAttemptEnvironment as ChargeAttemptEnvironmentModelImport } from "./src/models/ChargeAttemptEnvironment";
 import { ChargeAttemptState as ChargeAttemptStateModelImport } from "./src/models/ChargeAttemptState";
 import { ChargeFlow as ChargeFlowModelImport } from "./src/models/ChargeFlow";
@@ -124,6 +132,7 @@ import { PaymentTerminalLocationVersionState as PaymentTerminalLocationVersionSt
 import { PaymentTerminalState as PaymentTerminalStateModelImport } from "./src/models/PaymentTerminalState";
 import { PaymentTerminalType as PaymentTerminalTypeModelImport } from "./src/models/PaymentTerminalType";
 import { Permission as PermissionModelImport } from "./src/models/Permission";
+import { RecurringIndicator as RecurringIndicatorModelImport } from "./src/models/RecurringIndicator";
 import { Refund as RefundModelImport } from "./src/models/Refund";
 import { RefundComment as RefundCommentModelImport } from "./src/models/RefundComment";
 import { RefundCreate as RefundCreateModelImport } from "./src/models/RefundCreate";
@@ -156,6 +165,8 @@ import { TokenVersion as TokenVersionModelImport } from "./src/models/TokenVersi
 import { TokenVersionState as TokenVersionStateModelImport } from "./src/models/TokenVersionState";
 import { TokenVersionType as TokenVersionTypeModelImport } from "./src/models/TokenVersionType";
 import { TokenizationMode as TokenizationModeModelImport } from "./src/models/TokenizationMode";
+import { TokenizedCardData as TokenizedCardDataModelImport } from "./src/models/TokenizedCardData";
+import { TokenizedCardDataCreate as TokenizedCardDataCreateModelImport } from "./src/models/TokenizedCardDataCreate";
 import { Transaction as TransactionModelImport } from "./src/models/Transaction";
 import { TransactionAwareEntity as TransactionAwareEntityModelImport } from "./src/models/TransactionAwareEntity";
 import { TransactionComment as TransactionCommentModelImport } from "./src/models/TransactionComment";
@@ -193,6 +204,7 @@ import { AccountUpdate as AccountUpdateModelImport } from "./src/models/AccountU
 import { ApplicationUser as ApplicationUserModelImport } from "./src/models/ApplicationUser";
 import { ApplicationUserCreate as ApplicationUserCreateModelImport } from "./src/models/ApplicationUserCreate";
 import { ApplicationUserUpdate as ApplicationUserUpdateModelImport } from "./src/models/ApplicationUserUpdate";
+import { AuthenticatedCardData as AuthenticatedCardDataModelImport } from "./src/models/AuthenticatedCardData";
 import { Charge as ChargeModelImport } from "./src/models/Charge";
 import { ChargeAttempt as ChargeAttemptModelImport } from "./src/models/ChargeAttempt";
 import { ChargeFlowLevel as ChargeFlowLevelModelImport } from "./src/models/ChargeFlowLevel";
@@ -231,6 +243,7 @@ import { ApplicationUserCreateWithMacKey as ApplicationUserCreateWithMacKeyModel
 
 import { AccountService as AccountServiceApiImport } from "./src/api/AccountService";
 import { ApplicationUserService as ApplicationUserServiceApiImport } from "./src/api/ApplicationUserService";
+import { CardProcessingService as CardProcessingServiceApiImport } from "./src/api/CardProcessingService";
 import { ChargeAttemptService as ChargeAttemptServiceApiImport } from "./src/api/ChargeAttemptService";
 import { ChargeFlowLevelPaymentLinkService as ChargeFlowLevelPaymentLinkServiceApiImport } from "./src/api/ChargeFlowLevelPaymentLinkService";
 import { ChargeFlowLevelService as ChargeFlowLevelServiceApiImport } from "./src/api/ChargeFlowLevelService";
@@ -322,6 +335,22 @@ export namespace WeArePlanet {
         export const Address = AddressModelImport;
         export type AddressCreate = AddressCreateModelImport;
         export const AddressCreate = AddressCreateModelImport;
+        export type AuthenticatedCardDataCreate = AuthenticatedCardDataCreateModelImport;
+        export const AuthenticatedCardDataCreate = AuthenticatedCardDataCreateModelImport;
+        export type CardAuthenticationResponse = CardAuthenticationResponseModelImport;
+        export const CardAuthenticationResponse = CardAuthenticationResponseModelImport;
+        export type CardAuthenticationVersion = CardAuthenticationVersionModelImport;
+        export const CardAuthenticationVersion = CardAuthenticationVersionModelImport;
+        export type CardCryptogram = CardCryptogramModelImport;
+        export const CardCryptogram = CardCryptogramModelImport;
+        export type CardCryptogramCreate = CardCryptogramCreateModelImport;
+        export const CardCryptogramCreate = CardCryptogramCreateModelImport;
+        export type CardCryptogramType = CardCryptogramTypeModelImport;
+        export const CardCryptogramType = CardCryptogramTypeModelImport;
+        export type CardholderAuthentication = CardholderAuthenticationModelImport;
+        export const CardholderAuthentication = CardholderAuthenticationModelImport;
+        export type CardholderAuthenticationCreate = CardholderAuthenticationCreateModelImport;
+        export const CardholderAuthenticationCreate = CardholderAuthenticationCreateModelImport;
         export type ChargeAttemptEnvironment = ChargeAttemptEnvironmentModelImport;
         export const ChargeAttemptEnvironment = ChargeAttemptEnvironmentModelImport;
         export type ChargeAttemptState = ChargeAttemptStateModelImport;
@@ -536,6 +565,8 @@ export namespace WeArePlanet {
         export const PaymentTerminalType = PaymentTerminalTypeModelImport;
         export type Permission = PermissionModelImport;
         export const Permission = PermissionModelImport;
+        export type RecurringIndicator = RecurringIndicatorModelImport;
+        export const RecurringIndicator = RecurringIndicatorModelImport;
         export type Refund = RefundModelImport;
         export const Refund = RefundModelImport;
         export type RefundComment = RefundCommentModelImport;
@@ -600,6 +631,10 @@ export namespace WeArePlanet {
         export const TokenVersionType = TokenVersionTypeModelImport;
         export type TokenizationMode = TokenizationModeModelImport;
         export const TokenizationMode = TokenizationModeModelImport;
+        export type TokenizedCardData = TokenizedCardDataModelImport;
+        export const TokenizedCardData = TokenizedCardDataModelImport;
+        export type TokenizedCardDataCreate = TokenizedCardDataCreateModelImport;
+        export const TokenizedCardDataCreate = TokenizedCardDataCreateModelImport;
         export type Transaction = TransactionModelImport;
         export const Transaction = TransactionModelImport;
         export type TransactionAwareEntity = TransactionAwareEntityModelImport;
@@ -674,6 +709,8 @@ export namespace WeArePlanet {
         export const ApplicationUserCreate = ApplicationUserCreateModelImport;
         export type ApplicationUserUpdate = ApplicationUserUpdateModelImport;
         export const ApplicationUserUpdate = ApplicationUserUpdateModelImport;
+        export type AuthenticatedCardData = AuthenticatedCardDataModelImport;
+        export const AuthenticatedCardData = AuthenticatedCardDataModelImport;
         export type Charge = ChargeModelImport;
         export const Charge = ChargeModelImport;
         export type ChargeAttempt = ChargeAttemptModelImport;
@@ -751,6 +788,8 @@ export namespace WeArePlanet {
         export const AccountService = AccountServiceApiImport;
         export type ApplicationUserService = ApplicationUserServiceApiImport;
         export const ApplicationUserService = ApplicationUserServiceApiImport;
+        export type CardProcessingService = CardProcessingServiceApiImport;
+        export const CardProcessingService = CardProcessingServiceApiImport;
         export type ChargeAttemptService = ChargeAttemptServiceApiImport;
         export const ChargeAttemptService = ChargeAttemptServiceApiImport;
         export type ChargeFlowLevelPaymentLinkService = ChargeFlowLevelPaymentLinkServiceApiImport;

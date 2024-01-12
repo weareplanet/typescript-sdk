@@ -8,11 +8,13 @@ import { Authentication } from '../auth/Authentication';
 import { HMACAuthentication } from '../auth/HMACAuthentication';
 import { ObjectSerializer } from '../serializers/ObjectSerializer';
 
+import { AuthenticatedCardDataCreate } from  '../models/AuthenticatedCardDataCreate';
 import { ClientError } from  '../models/ClientError';
-import { LabelDescriptorGroup } from  '../models/LabelDescriptorGroup';
 import { ServerError } from  '../models/ServerError';
+import { TokenizedCardDataCreate } from  '../models/TokenizedCardDataCreate';
+import { Transaction } from  '../models/Transaction';
 
-class LabelDescriptionGroupService {
+class CardProcessingService {
     protected _basePath = 'https://paymentshub.weareplanet.com:443/api';
     protected _defaultHeaders : any = {};
     protected _useQuerystring : boolean = false;
@@ -67,19 +69,55 @@ class LabelDescriptionGroupService {
     }
 
     /**
-    * This operation returns all entities which are available.
-    * @summary All
+    * The process method will process the transaction with the given card details without using 3-D secure.
+    * @summary Process
+    * @param spaceId 
+    * @param transactionId The ID of the transaction which should be processed.
+    * @param paymentMethodConfigurationId The payment method configuration ID which is applied to the transaction.
+    * @param cardData The card details as JSON in plain which should be used to authorize the payment.
     * @param {*} [options] Override http request options.
     */
-    public all (options: any = {}) : Promise<{ response: http.IncomingMessage; body: Array<LabelDescriptorGroup>;  }> {
-        const url: string = '/label-description-group-service/all';
+    public process (spaceId: number, transactionId: number, paymentMethodConfigurationId: number, cardData: AuthenticatedCardDataCreate, options: any = {}) : Promise<{ response: http.IncomingMessage; body: Transaction;  }> {
+        const url: string = '/card-processing/process';
         let queryParams: any = {};
         let headers: any = Object.assign({}, this._defaultHeaders);
 
+        // verify required parameter 'spaceId' is not null or undefined
+        if (spaceId === null || spaceId === undefined) {
+            throw new Error('Required parameter spaceId was null or undefined when calling process.');
+        }
+
+        // verify required parameter 'transactionId' is not null or undefined
+        if (transactionId === null || transactionId === undefined) {
+            throw new Error('Required parameter transactionId was null or undefined when calling process.');
+        }
+
+        // verify required parameter 'paymentMethodConfigurationId' is not null or undefined
+        if (paymentMethodConfigurationId === null || paymentMethodConfigurationId === undefined) {
+            throw new Error('Required parameter paymentMethodConfigurationId was null or undefined when calling process.');
+        }
+
+        // verify required parameter 'cardData' is not null or undefined
+        if (cardData === null || cardData === undefined) {
+            throw new Error('Required parameter cardData was null or undefined when calling process.');
+        }
+
+        if (spaceId !== undefined) {
+            queryParams['spaceId'] = ObjectSerializer.serialize(spaceId, "number");
+        }
+
+        if (transactionId !== undefined) {
+            queryParams['transactionId'] = ObjectSerializer.serialize(transactionId, "number");
+        }
+
+        if (paymentMethodConfigurationId !== undefined) {
+            queryParams['paymentMethodConfigurationId'] = ObjectSerializer.serialize(paymentMethodConfigurationId, "number");
+        }
 
 
 
-        headers['Content-Type'] = '*/*';
+
+        headers['Content-Type'] = 'application/json;charset=utf-8';
 
         Object.assign(headers, options.headers);
 
@@ -94,10 +132,11 @@ class LabelDescriptionGroupService {
 
         let requestConfig: axios.AxiosRequestConfig = {
             url,
-            method: 'GET',
+            method: 'POST',
             baseURL: this._basePath,
             headers,
             params: queryParams,
+            data: cardData,
             timeout: this._timeout * 1000,
             responseType: 'json',
         }
@@ -105,12 +144,12 @@ class LabelDescriptionGroupService {
         const axiosInstance: axios.AxiosInstance  = axios.default.create();
         axiosInstance.interceptors.request.use(this._defaultAuthentication);
 
-        return new Promise<{ response: http.IncomingMessage; body: Array<LabelDescriptorGroup>;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: Transaction;  }>((resolve, reject) => {
             axiosInstance.request(requestConfig)
                 .then(
                     success => {
                         let body;
-                        body = ObjectSerializer.deserialize(success.data, "Array<LabelDescriptorGroup>");
+                        body = ObjectSerializer.deserialize(success.data, "Transaction");
                         return resolve({ response: success.request.res, body: body });
                     },
                     failure => {
@@ -143,29 +182,55 @@ class LabelDescriptionGroupService {
     };
 
     /**
-    * Reads the entity with the given 'id' and returns it.
-    * @summary Read
-    * @param id The id of the label descriptor group which should be returned.
+    * The process method will process the transaction with the given card details by eventually using 3-D secure. The buyer has to be redirect to the URL returned by this method.
+    * @summary Process With 3-D Secure
+    * @param spaceId 
+    * @param transactionId The ID of the transaction which should be processed.
+    * @param paymentMethodConfigurationId The payment method configuration ID which is applied to the transaction.
+    * @param cardData The card details as JSON in plain which should be used to authorize the payment.
     * @param {*} [options] Override http request options.
     */
-    public read (id: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: LabelDescriptorGroup;  }> {
-        const url: string = '/label-description-group-service/read';
+    public processWith3DSecure (spaceId: number, transactionId: number, paymentMethodConfigurationId: number, cardData: TokenizedCardDataCreate, options: any = {}) : Promise<{ response: http.IncomingMessage; body: string;  }> {
+        const url: string = '/card-processing/processWith3DSecure';
         let queryParams: any = {};
         let headers: any = Object.assign({}, this._defaultHeaders);
 
-        // verify required parameter 'id' is not null or undefined
-        if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling read.');
+        // verify required parameter 'spaceId' is not null or undefined
+        if (spaceId === null || spaceId === undefined) {
+            throw new Error('Required parameter spaceId was null or undefined when calling processWith3DSecure.');
         }
 
-        if (id !== undefined) {
-            queryParams['id'] = ObjectSerializer.serialize(id, "number");
+        // verify required parameter 'transactionId' is not null or undefined
+        if (transactionId === null || transactionId === undefined) {
+            throw new Error('Required parameter transactionId was null or undefined when calling processWith3DSecure.');
+        }
+
+        // verify required parameter 'paymentMethodConfigurationId' is not null or undefined
+        if (paymentMethodConfigurationId === null || paymentMethodConfigurationId === undefined) {
+            throw new Error('Required parameter paymentMethodConfigurationId was null or undefined when calling processWith3DSecure.');
+        }
+
+        // verify required parameter 'cardData' is not null or undefined
+        if (cardData === null || cardData === undefined) {
+            throw new Error('Required parameter cardData was null or undefined when calling processWith3DSecure.');
+        }
+
+        if (spaceId !== undefined) {
+            queryParams['spaceId'] = ObjectSerializer.serialize(spaceId, "number");
+        }
+
+        if (transactionId !== undefined) {
+            queryParams['transactionId'] = ObjectSerializer.serialize(transactionId, "number");
+        }
+
+        if (paymentMethodConfigurationId !== undefined) {
+            queryParams['paymentMethodConfigurationId'] = ObjectSerializer.serialize(paymentMethodConfigurationId, "number");
         }
 
 
 
 
-        headers['Content-Type'] = '*/*';
+        headers['Content-Type'] = 'application/json;charset=utf-8';
 
         Object.assign(headers, options.headers);
 
@@ -180,10 +245,11 @@ class LabelDescriptionGroupService {
 
         let requestConfig: axios.AxiosRequestConfig = {
             url,
-            method: 'GET',
+            method: 'POST',
             baseURL: this._basePath,
             headers,
             params: queryParams,
+            data: cardData,
             timeout: this._timeout * 1000,
             responseType: 'json',
         }
@@ -191,12 +257,12 @@ class LabelDescriptionGroupService {
         const axiosInstance: axios.AxiosInstance  = axios.default.create();
         axiosInstance.interceptors.request.use(this._defaultAuthentication);
 
-        return new Promise<{ response: http.IncomingMessage; body: LabelDescriptorGroup;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: string;  }>((resolve, reject) => {
             axiosInstance.request(requestConfig)
                 .then(
                     success => {
                         let body;
-                        body = ObjectSerializer.deserialize(success.data, "LabelDescriptorGroup");
+                        body = ObjectSerializer.deserialize(success.data, "string");
                         return resolve({ response: success.request.res, body: body });
                     },
                     failure => {
@@ -230,4 +296,4 @@ class LabelDescriptionGroupService {
 
 }
 
-export { LabelDescriptionGroupService }
+export { CardProcessingService }

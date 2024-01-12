@@ -18,6 +18,14 @@ import { AccountState } from "../models/AccountState";
 import { AccountType } from "../models/AccountType";
 import { Address } from "../models/Address";
 import { AddressCreate } from "../models/AddressCreate";
+import { AuthenticatedCardDataCreate } from "../models/AuthenticatedCardDataCreate";
+import { CardAuthenticationResponse } from "../models/CardAuthenticationResponse";
+import { CardAuthenticationVersion } from "../models/CardAuthenticationVersion";
+import { CardCryptogram } from "../models/CardCryptogram";
+import { CardCryptogramCreate } from "../models/CardCryptogramCreate";
+import { CardCryptogramType } from "../models/CardCryptogramType";
+import { CardholderAuthentication } from "../models/CardholderAuthentication";
+import { CardholderAuthenticationCreate } from "../models/CardholderAuthenticationCreate";
 import { ChargeAttemptEnvironment } from "../models/ChargeAttemptEnvironment";
 import { ChargeAttemptState } from "../models/ChargeAttemptState";
 import { ChargeFlow } from "../models/ChargeFlow";
@@ -125,6 +133,7 @@ import { PaymentTerminalLocationVersionState } from "../models/PaymentTerminalLo
 import { PaymentTerminalState } from "../models/PaymentTerminalState";
 import { PaymentTerminalType } from "../models/PaymentTerminalType";
 import { Permission } from "../models/Permission";
+import { RecurringIndicator } from "../models/RecurringIndicator";
 import { Refund } from "../models/Refund";
 import { RefundComment } from "../models/RefundComment";
 import { RefundCreate } from "../models/RefundCreate";
@@ -157,6 +166,8 @@ import { TokenVersion } from "../models/TokenVersion";
 import { TokenVersionState } from "../models/TokenVersionState";
 import { TokenVersionType } from "../models/TokenVersionType";
 import { TokenizationMode } from "../models/TokenizationMode";
+import { TokenizedCardData } from "../models/TokenizedCardData";
+import { TokenizedCardDataCreate } from "../models/TokenizedCardDataCreate";
 import { Transaction } from "../models/Transaction";
 import { TransactionAwareEntity } from "../models/TransactionAwareEntity";
 import { TransactionComment } from "../models/TransactionComment";
@@ -194,6 +205,7 @@ import { AccountUpdate } from "../models/AccountUpdate";
 import { ApplicationUser } from "../models/ApplicationUser";
 import { ApplicationUserCreate } from "../models/ApplicationUserCreate";
 import { ApplicationUserUpdate } from "../models/ApplicationUserUpdate";
+import { AuthenticatedCardData } from "../models/AuthenticatedCardData";
 import { Charge } from "../models/Charge";
 import { ChargeAttempt } from "../models/ChargeAttempt";
 import { ChargeFlowLevel } from "../models/ChargeFlowLevel";
@@ -247,6 +259,9 @@ class ObjectSerializer {
     static enumsMap: {[index: string]: any} = {
         "AccountState": AccountState,
         "AccountType": AccountType,
+        "CardAuthenticationResponse": CardAuthenticationResponse,
+        "CardAuthenticationVersion": CardAuthenticationVersion,
+        "CardCryptogramType": CardCryptogramType,
         "ChargeAttemptEnvironment": ChargeAttemptEnvironment,
         "ChargeAttemptState": ChargeAttemptState,
         "ChargeFlowLevelState": ChargeFlowLevelState,
@@ -283,6 +298,7 @@ class ObjectSerializer {
         "PaymentTerminalLocationState": PaymentTerminalLocationState,
         "PaymentTerminalLocationVersionState": PaymentTerminalLocationVersionState,
         "PaymentTerminalState": PaymentTerminalState,
+        "RecurringIndicator": RecurringIndicator,
         "RefundState": RefundState,
         "RefundType": RefundType,
         "ResourceState": ResourceState,
@@ -322,6 +338,11 @@ class ObjectSerializer {
                 "Account": Account,
                 "Address": Address,
                 "AddressCreate": AddressCreate,
+                "AuthenticatedCardDataCreate": AuthenticatedCardDataCreate,
+                "CardCryptogram": CardCryptogram,
+                "CardCryptogramCreate": CardCryptogramCreate,
+                "CardholderAuthentication": CardholderAuthentication,
+                "CardholderAuthenticationCreate": CardholderAuthenticationCreate,
                 "ChargeFlow": ChargeFlow,
                 "ChargeFlowLevelConfiguration": ChargeFlowLevelConfiguration,
                 "ChargeFlowLevelConfigurationType": ChargeFlowLevelConfigurationType,
@@ -418,6 +439,8 @@ class ObjectSerializer {
                 "Token": Token,
                 "TokenVersion": TokenVersion,
                 "TokenVersionType": TokenVersionType,
+                "TokenizedCardData": TokenizedCardData,
+                "TokenizedCardDataCreate": TokenizedCardDataCreate,
                 "Transaction": Transaction,
                 "TransactionAwareEntity": TransactionAwareEntity,
                 "TransactionComment": TransactionComment,
@@ -443,6 +466,7 @@ class ObjectSerializer {
                 "ApplicationUser": ApplicationUser,
                 "ApplicationUserCreate": ApplicationUserCreate,
                 "ApplicationUserUpdate": ApplicationUserUpdate,
+                "AuthenticatedCardData": AuthenticatedCardData,
                 "Charge": Charge,
                 "ChargeAttempt": ChargeAttempt,
                 "ChargeFlowLevel": ChargeFlowLevel,
