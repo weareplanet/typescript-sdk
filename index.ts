@@ -22,7 +22,6 @@ import { CardAuthenticationResponse as CardAuthenticationResponseModelImport } f
 import { CardAuthenticationVersion as CardAuthenticationVersionModelImport } from "./src/models/CardAuthenticationVersion";
 import { CardCryptogram as CardCryptogramModelImport } from "./src/models/CardCryptogram";
 import { CardCryptogramCreate as CardCryptogramCreateModelImport } from "./src/models/CardCryptogramCreate";
-import { CardCryptogramType as CardCryptogramTypeModelImport } from "./src/models/CardCryptogramType";
 import { CardholderAuthentication as CardholderAuthenticationModelImport } from "./src/models/CardholderAuthentication";
 import { CardholderAuthenticationCreate as CardholderAuthenticationCreateModelImport } from "./src/models/CardholderAuthenticationCreate";
 import { ChargeAttemptEnvironment as ChargeAttemptEnvironmentModelImport } from "./src/models/ChargeAttemptEnvironment";
@@ -87,6 +86,7 @@ import { ManualTaskActionStyle as ManualTaskActionStyleModelImport } from "./src
 import { ManualTaskState as ManualTaskStateModelImport } from "./src/models/ManualTaskState";
 import { ManualTaskType as ManualTaskTypeModelImport } from "./src/models/ManualTaskType";
 import { OneClickPaymentMode as OneClickPaymentModeModelImport } from "./src/models/OneClickPaymentMode";
+import { PanType as PanTypeModelImport } from "./src/models/PanType";
 import { PaymentAppChargeAttemptTargetState as PaymentAppChargeAttemptTargetStateModelImport } from "./src/models/PaymentAppChargeAttemptTargetState";
 import { PaymentAppChargeAttemptUpdateRequest as PaymentAppChargeAttemptUpdateRequestModelImport } from "./src/models/PaymentAppChargeAttemptUpdateRequest";
 import { PaymentAppCompletionConfiguration as PaymentAppCompletionConfigurationModelImport } from "./src/models/PaymentAppCompletionConfiguration";
@@ -345,8 +345,6 @@ export namespace WeArePlanet {
         export const CardCryptogram = CardCryptogramModelImport;
         export type CardCryptogramCreate = CardCryptogramCreateModelImport;
         export const CardCryptogramCreate = CardCryptogramCreateModelImport;
-        export type CardCryptogramType = CardCryptogramTypeModelImport;
-        export const CardCryptogramType = CardCryptogramTypeModelImport;
         export type CardholderAuthentication = CardholderAuthenticationModelImport;
         export const CardholderAuthentication = CardholderAuthenticationModelImport;
         export type CardholderAuthenticationCreate = CardholderAuthenticationCreateModelImport;
@@ -475,6 +473,8 @@ export namespace WeArePlanet {
         export const ManualTaskType = ManualTaskTypeModelImport;
         export type OneClickPaymentMode = OneClickPaymentModeModelImport;
         export const OneClickPaymentMode = OneClickPaymentModeModelImport;
+        export type PanType = PanTypeModelImport;
+        export const PanType = PanTypeModelImport;
         export type PaymentAppChargeAttemptTargetState = PaymentAppChargeAttemptTargetStateModelImport;
         export const PaymentAppChargeAttemptTargetState = PaymentAppChargeAttemptTargetStateModelImport;
         export type PaymentAppChargeAttemptUpdateRequest = PaymentAppChargeAttemptUpdateRequestModelImport;

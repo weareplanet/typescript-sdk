@@ -23,7 +23,6 @@ import { CardAuthenticationResponse } from "../models/CardAuthenticationResponse
 import { CardAuthenticationVersion } from "../models/CardAuthenticationVersion";
 import { CardCryptogram } from "../models/CardCryptogram";
 import { CardCryptogramCreate } from "../models/CardCryptogramCreate";
-import { CardCryptogramType } from "../models/CardCryptogramType";
 import { CardholderAuthentication } from "../models/CardholderAuthentication";
 import { CardholderAuthenticationCreate } from "../models/CardholderAuthenticationCreate";
 import { ChargeAttemptEnvironment } from "../models/ChargeAttemptEnvironment";
@@ -88,6 +87,7 @@ import { ManualTaskActionStyle } from "../models/ManualTaskActionStyle";
 import { ManualTaskState } from "../models/ManualTaskState";
 import { ManualTaskType } from "../models/ManualTaskType";
 import { OneClickPaymentMode } from "../models/OneClickPaymentMode";
+import { PanType } from "../models/PanType";
 import { PaymentAppChargeAttemptTargetState } from "../models/PaymentAppChargeAttemptTargetState";
 import { PaymentAppChargeAttemptUpdateRequest } from "../models/PaymentAppChargeAttemptUpdateRequest";
 import { PaymentAppCompletionConfiguration } from "../models/PaymentAppCompletionConfiguration";
@@ -261,7 +261,6 @@ class ObjectSerializer {
         "AccountType": AccountType,
         "CardAuthenticationResponse": CardAuthenticationResponse,
         "CardAuthenticationVersion": CardAuthenticationVersion,
-        "CardCryptogramType": CardCryptogramType,
         "ChargeAttemptEnvironment": ChargeAttemptEnvironment,
         "ChargeAttemptState": ChargeAttemptState,
         "ChargeFlowLevelState": ChargeFlowLevelState,
@@ -285,6 +284,7 @@ class ObjectSerializer {
         "ManualTaskActionStyle": ManualTaskActionStyle,
         "ManualTaskState": ManualTaskState,
         "OneClickPaymentMode": OneClickPaymentMode,
+        "PanType": PanType,
         "PaymentAppChargeAttemptTargetState": PaymentAppChargeAttemptTargetState,
         "PaymentAppCompletionTargetState": PaymentAppCompletionTargetState,
         "PaymentAppConnectorState": PaymentAppConnectorState,
