@@ -25,11 +25,15 @@ import { CardCryptogram } from "../models/CardCryptogram";
 import { CardCryptogramCreate } from "../models/CardCryptogramCreate";
 import { CardholderAuthentication } from "../models/CardholderAuthentication";
 import { CardholderAuthenticationCreate } from "../models/CardholderAuthenticationCreate";
+import { Charge } from "../models/Charge";
+import { ChargeAttempt } from "../models/ChargeAttempt";
 import { ChargeAttemptEnvironment } from "../models/ChargeAttemptEnvironment";
 import { ChargeAttemptState } from "../models/ChargeAttemptState";
 import { ChargeFlow } from "../models/ChargeFlow";
+import { ChargeFlowLevel } from "../models/ChargeFlowLevel";
 import { ChargeFlowLevelConfiguration } from "../models/ChargeFlowLevelConfiguration";
 import { ChargeFlowLevelConfigurationType } from "../models/ChargeFlowLevelConfigurationType";
+import { ChargeFlowLevelPaymentLink } from "../models/ChargeFlowLevelPaymentLink";
 import { ChargeFlowLevelState } from "../models/ChargeFlowLevelState";
 import { ChargeState } from "../models/ChargeState";
 import { ChargeType } from "../models/ChargeType";
@@ -39,6 +43,7 @@ import { CompletionLineItem } from "../models/CompletionLineItem";
 import { CompletionLineItemCreate } from "../models/CompletionLineItemCreate";
 import { Condition } from "../models/Condition";
 import { ConditionType } from "../models/ConditionType";
+import { ConnectorInvocation } from "../models/ConnectorInvocation";
 import { ConnectorInvocationStage } from "../models/ConnectorInvocationStage";
 import { CreationEntityState } from "../models/CreationEntityState";
 import { CriteriaOperator } from "../models/CriteriaOperator";
@@ -50,8 +55,10 @@ import { CustomerPostalAddress } from "../models/CustomerPostalAddress";
 import { CustomerPostalAddressCreate } from "../models/CustomerPostalAddressCreate";
 import { CustomersPresence } from "../models/CustomersPresence";
 import { DataCollectionType } from "../models/DataCollectionType";
+import { DeliveryIndication } from "../models/DeliveryIndication";
 import { DeliveryIndicationDecisionReason } from "../models/DeliveryIndicationDecisionReason";
 import { DeliveryIndicationState } from "../models/DeliveryIndicationState";
+import { DocumentTemplate } from "../models/DocumentTemplate";
 import { DocumentTemplateType } from "../models/DocumentTemplateType";
 import { DocumentTemplateTypeGroup } from "../models/DocumentTemplateTypeGroup";
 import { EntityExportRequest } from "../models/EntityExportRequest";
@@ -169,8 +176,8 @@ import { TokenizationMode } from "../models/TokenizationMode";
 import { TokenizedCardData } from "../models/TokenizedCardData";
 import { TokenizedCardDataCreate } from "../models/TokenizedCardDataCreate";
 import { Transaction } from "../models/Transaction";
-import { TransactionAwareEntity } from "../models/TransactionAwareEntity";
 import { TransactionComment } from "../models/TransactionComment";
+import { TransactionCompletion } from "../models/TransactionCompletion";
 import { TransactionCompletionBehavior } from "../models/TransactionCompletionBehavior";
 import { TransactionCompletionMode } from "../models/TransactionCompletionMode";
 import { TransactionCompletionRequest } from "../models/TransactionCompletionRequest";
@@ -178,13 +185,16 @@ import { TransactionCompletionState } from "../models/TransactionCompletionState
 import { TransactionEnvironmentSelectionStrategy } from "../models/TransactionEnvironmentSelectionStrategy";
 import { TransactionGroup } from "../models/TransactionGroup";
 import { TransactionGroupState } from "../models/TransactionGroupState";
+import { TransactionInvoice } from "../models/TransactionInvoice";
 import { TransactionInvoiceComment } from "../models/TransactionInvoiceComment";
 import { TransactionInvoiceReplacement } from "../models/TransactionInvoiceReplacement";
 import { TransactionInvoiceState } from "../models/TransactionInvoiceState";
+import { TransactionLineItemVersion } from "../models/TransactionLineItemVersion";
 import { TransactionLineItemVersionCreate } from "../models/TransactionLineItemVersionCreate";
 import { TransactionLineItemVersionState } from "../models/TransactionLineItemVersionState";
 import { TransactionState } from "../models/TransactionState";
 import { TransactionUserInterfaceType } from "../models/TransactionUserInterfaceType";
+import { TransactionVoid } from "../models/TransactionVoid";
 import { TransactionVoidMode } from "../models/TransactionVoidMode";
 import { TransactionVoidState } from "../models/TransactionVoidState";
 import { TwoFactorAuthenticationType } from "../models/TwoFactorAuthenticationType";
@@ -206,18 +216,12 @@ import { ApplicationUser } from "../models/ApplicationUser";
 import { ApplicationUserCreate } from "../models/ApplicationUserCreate";
 import { ApplicationUserUpdate } from "../models/ApplicationUserUpdate";
 import { AuthenticatedCardData } from "../models/AuthenticatedCardData";
-import { Charge } from "../models/Charge";
-import { ChargeAttempt } from "../models/ChargeAttempt";
-import { ChargeFlowLevel } from "../models/ChargeFlowLevel";
-import { ChargeFlowLevelPaymentLink } from "../models/ChargeFlowLevelPaymentLink";
-import { ConnectorInvocation } from "../models/ConnectorInvocation";
 import { CustomerActive } from "../models/CustomerActive";
 import { CustomerAddressActive } from "../models/CustomerAddressActive";
 import { CustomerAddressCreate } from "../models/CustomerAddressCreate";
 import { CustomerCommentActive } from "../models/CustomerCommentActive";
 import { CustomerCommentCreate } from "../models/CustomerCommentCreate";
 import { CustomerCreate } from "../models/CustomerCreate";
-import { DeliveryIndication } from "../models/DeliveryIndication";
 import { HumanUserCreate } from "../models/HumanUserCreate";
 import { HumanUserUpdate } from "../models/HumanUserUpdate";
 import { RefundCommentActive } from "../models/RefundCommentActive";
@@ -228,14 +232,10 @@ import { TokenCreate } from "../models/TokenCreate";
 import { TokenUpdate } from "../models/TokenUpdate";
 import { TransactionCommentActive } from "../models/TransactionCommentActive";
 import { TransactionCommentCreate } from "../models/TransactionCommentCreate";
-import { TransactionCompletion } from "../models/TransactionCompletion";
 import { TransactionCreate } from "../models/TransactionCreate";
-import { TransactionInvoice } from "../models/TransactionInvoice";
 import { TransactionInvoiceCommentActive } from "../models/TransactionInvoiceCommentActive";
 import { TransactionInvoiceCommentCreate } from "../models/TransactionInvoiceCommentCreate";
-import { TransactionLineItemVersion } from "../models/TransactionLineItemVersion";
 import { TransactionPending } from "../models/TransactionPending";
-import { TransactionVoid } from "../models/TransactionVoid";
 import { WebhookListenerCreate } from "../models/WebhookListenerCreate";
 import { WebhookListenerUpdate } from "../models/WebhookListenerUpdate";
 import { WebhookUrlCreate } from "../models/WebhookUrlCreate";
@@ -343,20 +343,27 @@ class ObjectSerializer {
                 "CardCryptogramCreate": CardCryptogramCreate,
                 "CardholderAuthentication": CardholderAuthentication,
                 "CardholderAuthenticationCreate": CardholderAuthenticationCreate,
+                "Charge": Charge,
+                "ChargeAttempt": ChargeAttempt,
                 "ChargeFlow": ChargeFlow,
+                "ChargeFlowLevel": ChargeFlowLevel,
                 "ChargeFlowLevelConfiguration": ChargeFlowLevelConfiguration,
                 "ChargeFlowLevelConfigurationType": ChargeFlowLevelConfigurationType,
+                "ChargeFlowLevelPaymentLink": ChargeFlowLevelPaymentLink,
                 "ClientError": ClientError,
                 "CompletionLineItem": CompletionLineItem,
                 "CompletionLineItemCreate": CompletionLineItemCreate,
                 "Condition": Condition,
                 "ConditionType": ConditionType,
+                "ConnectorInvocation": ConnectorInvocation,
                 "Customer": Customer,
                 "CustomerAddress": CustomerAddress,
                 "CustomerComment": CustomerComment,
                 "CustomerPostalAddress": CustomerPostalAddress,
                 "CustomerPostalAddressCreate": CustomerPostalAddressCreate,
+                "DeliveryIndication": DeliveryIndication,
                 "DeliveryIndicationDecisionReason": DeliveryIndicationDecisionReason,
+                "DocumentTemplate": DocumentTemplate,
                 "DocumentTemplateType": DocumentTemplateType,
                 "DocumentTemplateTypeGroup": DocumentTemplateTypeGroup,
                 "EntityExportRequest": EntityExportRequest,
@@ -442,13 +449,16 @@ class ObjectSerializer {
                 "TokenizedCardData": TokenizedCardData,
                 "TokenizedCardDataCreate": TokenizedCardDataCreate,
                 "Transaction": Transaction,
-                "TransactionAwareEntity": TransactionAwareEntity,
                 "TransactionComment": TransactionComment,
+                "TransactionCompletion": TransactionCompletion,
                 "TransactionCompletionRequest": TransactionCompletionRequest,
                 "TransactionGroup": TransactionGroup,
+                "TransactionInvoice": TransactionInvoice,
                 "TransactionInvoiceComment": TransactionInvoiceComment,
                 "TransactionInvoiceReplacement": TransactionInvoiceReplacement,
+                "TransactionLineItemVersion": TransactionLineItemVersion,
                 "TransactionLineItemVersionCreate": TransactionLineItemVersionCreate,
+                "TransactionVoid": TransactionVoid,
                 "TwoFactorAuthenticationType": TwoFactorAuthenticationType,
                 "User": User,
                 "UserAccountRole": UserAccountRole,
@@ -467,18 +477,12 @@ class ObjectSerializer {
                 "ApplicationUserCreate": ApplicationUserCreate,
                 "ApplicationUserUpdate": ApplicationUserUpdate,
                 "AuthenticatedCardData": AuthenticatedCardData,
-                "Charge": Charge,
-                "ChargeAttempt": ChargeAttempt,
-                "ChargeFlowLevel": ChargeFlowLevel,
-                "ChargeFlowLevelPaymentLink": ChargeFlowLevelPaymentLink,
-                "ConnectorInvocation": ConnectorInvocation,
                 "CustomerActive": CustomerActive,
                 "CustomerAddressActive": CustomerAddressActive,
                 "CustomerAddressCreate": CustomerAddressCreate,
                 "CustomerCommentActive": CustomerCommentActive,
                 "CustomerCommentCreate": CustomerCommentCreate,
                 "CustomerCreate": CustomerCreate,
-                "DeliveryIndication": DeliveryIndication,
                 "HumanUserCreate": HumanUserCreate,
                 "HumanUserUpdate": HumanUserUpdate,
                 "RefundCommentActive": RefundCommentActive,
@@ -489,14 +493,10 @@ class ObjectSerializer {
                 "TokenUpdate": TokenUpdate,
                 "TransactionCommentActive": TransactionCommentActive,
                 "TransactionCommentCreate": TransactionCommentCreate,
-                "TransactionCompletion": TransactionCompletion,
                 "TransactionCreate": TransactionCreate,
-                "TransactionInvoice": TransactionInvoice,
                 "TransactionInvoiceCommentActive": TransactionInvoiceCommentActive,
                 "TransactionInvoiceCommentCreate": TransactionInvoiceCommentCreate,
-                "TransactionLineItemVersion": TransactionLineItemVersion,
                 "TransactionPending": TransactionPending,
-                "TransactionVoid": TransactionVoid,
                 "WebhookListenerCreate": WebhookListenerCreate,
                 "WebhookListenerUpdate": WebhookListenerUpdate,
                 "WebhookUrlCreate": WebhookUrlCreate,

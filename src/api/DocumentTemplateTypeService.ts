@@ -9,10 +9,10 @@ import { HMACAuthentication } from '../auth/HMACAuthentication';
 import { ObjectSerializer } from '../serializers/ObjectSerializer';
 
 import { ClientError } from  '../models/ClientError';
-import { Permission } from  '../models/Permission';
+import { DocumentTemplateType } from  '../models/DocumentTemplateType';
 import { ServerError } from  '../models/ServerError';
 
-class PermissionService {
+class DocumentTemplateTypeService {
     protected _basePath = 'https://paymentshub.weareplanet.com:443/api';
     protected _defaultHeaders : any = {};
     protected _useQuerystring : boolean = false;
@@ -71,8 +71,8 @@ class PermissionService {
     * @summary All
     * @param {*} [options] Override http request options.
     */
-    public all (options: any = {}) : Promise<{ response: http.IncomingMessage; body: Array<Permission>;  }> {
-        const url: string = '/permission/all';
+    public all (options: any = {}) : Promise<{ response: http.IncomingMessage; body: Array<DocumentTemplateType>;  }> {
+        const url: string = '/document-template-type/all';
         let queryParams: any = {};
         let headers: any = Object.assign({}, this._defaultHeaders);
 
@@ -105,12 +105,12 @@ class PermissionService {
         const axiosInstance: axios.AxiosInstance  = axios.default.create();
         axiosInstance.interceptors.request.use(this._defaultAuthentication);
 
-        return new Promise<{ response: http.IncomingMessage; body: Array<Permission>;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: Array<DocumentTemplateType>;  }>((resolve, reject) => {
             axiosInstance.request(requestConfig)
                 .then(
                     success => {
                         let body;
-                        body = ObjectSerializer.deserialize(success.data, "Array<Permission>");
+                        body = ObjectSerializer.deserialize(success.data, "Array<DocumentTemplateType>");
                         return resolve({ response: success.request.res, body: body });
                     },
                     failure => {
@@ -145,11 +145,11 @@ class PermissionService {
     /**
     * Reads the entity with the given 'id' and returns it.
     * @summary Read
-    * @param id The id of the permission which should be returned.
+    * @param id The id of the document template type which should be returned.
     * @param {*} [options] Override http request options.
     */
-    public read (id: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: Permission;  }> {
-        const url: string = '/permission/read';
+    public read (id: number, options: any = {}) : Promise<{ response: http.IncomingMessage; body: DocumentTemplateType;  }> {
+        const url: string = '/document-template-type/read';
         let queryParams: any = {};
         let headers: any = Object.assign({}, this._defaultHeaders);
 
@@ -191,12 +191,12 @@ class PermissionService {
         const axiosInstance: axios.AxiosInstance  = axios.default.create();
         axiosInstance.interceptors.request.use(this._defaultAuthentication);
 
-        return new Promise<{ response: http.IncomingMessage; body: Permission;  }>((resolve, reject) => {
+        return new Promise<{ response: http.IncomingMessage; body: DocumentTemplateType;  }>((resolve, reject) => {
             axiosInstance.request(requestConfig)
                 .then(
                     success => {
                         let body;
-                        body = ObjectSerializer.deserialize(success.data, "Permission");
+                        body = ObjectSerializer.deserialize(success.data, "DocumentTemplateType");
                         return resolve({ response: success.request.res, body: body });
                     },
                     failure => {
@@ -230,4 +230,4 @@ class PermissionService {
 
 }
 
-export { PermissionService }
+export { DocumentTemplateTypeService }

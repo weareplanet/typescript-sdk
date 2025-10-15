@@ -1,7 +1,7 @@
 {
     "name": "weareplanet",
     "title": "WeArePlanet",
-    "version": "4.7.0",
+    "version": "4.8.0",
     "description": "TypeScript/JavaScript client for WeArePlanet",
     "homepage": "http://github.com/weareplanet/typescript-sdk",
     "repository": {

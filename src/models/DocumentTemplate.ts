@@ -1,13 +1,19 @@
 'use strict';
 import { CreationEntityState } from "./CreationEntityState";
+import { ResourcePath } from "./ResourcePath";
 
 
-class ChargeFlow {
+class DocumentTemplate {
 
         /**
-        * Conditions allow to define criteria that a transaction must fulfill in order for the charge flow to be considered for processing the payment.
+        * Whether this is the default document template which is used whenever no specific template is specified for the same template type.
         */
-    'conditions'?: Array<number>;
+    'defaultTemplate'?: boolean;
+
+        /**
+        * Whether documents of this template should be delivered.
+        */
+    'deliveryEnabled'?: boolean;
 
         /**
         * A unique identifier for the object.
@@ -20,7 +26,7 @@ class ChargeFlow {
     'linkedSpaceId'?: number;
 
         /**
-        * The name used to identify the charge flow.
+        * The name used to identify the document template.
         */
     'name'?: string;
 
@@ -30,14 +36,24 @@ class ChargeFlow {
     'plannedPurgeDate'?: Date;
 
         /**
-        * The priority that determines the order in which charge flows are taken into account when processing a payment. Low values are considered first.
+        * The ID of the space this object belongs to.
         */
-    'priority'?: number;
+    'spaceId'?: number;
 
         /**
         * The object's current state.
         */
     'state'?: CreationEntityState;
+
+        /**
+        * The resource path to a custom template to be used to generate PDF documents.
+        */
+    'templateResource'?: ResourcePath;
+
+        /**
+        * The document template's type.
+        */
+    'type'?: number;
 
         /**
         * The version is used for optimistic locking and incremented whenever the object is updated.
@@ -50,9 +66,15 @@ class ChargeFlow {
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
     
         {
-        "name": "conditions",
-        "baseName": "conditions",
-        "type": "Array<number>"
+        "name": "defaultTemplate",
+        "baseName": "defaultTemplate",
+        "type": "boolean"
+        },
+        
+        {
+        "name": "deliveryEnabled",
+        "baseName": "deliveryEnabled",
+        "type": "boolean"
         },
         
         {
@@ -80,8 +102,8 @@ class ChargeFlow {
         },
         
         {
-        "name": "priority",
-        "baseName": "priority",
+        "name": "spaceId",
+        "baseName": "spaceId",
         "type": "number"
         },
         
@@ -92,6 +114,18 @@ class ChargeFlow {
         },
         
         {
+        "name": "templateResource",
+        "baseName": "templateResource",
+        "type": "ResourcePath"
+        },
+        
+        {
+        "name": "type",
+        "baseName": "type",
+        "type": "number"
+        },
+        
+        {
         "name": "version",
         "baseName": "version",
         "type": "number"
@@ -99,8 +133,8 @@ class ChargeFlow {
     ];
 
     static getAttributeTypeMap() {
-        return ChargeFlow.attributeTypeMap;
+        return DocumentTemplate.attributeTypeMap;
     }
 }
 
-export { ChargeFlow }
+export { DocumentTemplate }
