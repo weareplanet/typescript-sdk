@@ -2011,41 +2011,22 @@ When working with webhooks, the `WeArePlanetSdkException` may throw error codes 
 
 ### Error Code Categories
 
-| **Range** | **Category** | **Description** |
-|-----------|--------------|-----------------|
-| **404** | Not Found | Indicates that the requested resource could not be found or the endpoint returned an empty response |
-| **1000–1999** | Client-Side Errors | Errors typically caused by invalid input |
-| **2000–2999** | Server-Side Errors | Errors typically caused by incorrect data provided by the server |
-
-### Error Code Reference
-
-| **Code** | **Error Name** | **Description** | **Category** |
-|----------|----------------|-----------------|--------------|
-| 404 | `UNKNOWN_WEBHOOK_ENCRYPTION_PUBLIC_KEY` | Unknown webhook signature public key | Not Found |
-| 1000 | `WEBHOOK_ENCRYPTION_GENERAL_ERROR` | General webhook encryption error | Client-Side |
-| 1001 | `INVALID_WEBHOOK_ENCRYPTION_PUBLIC_KEY` | Invalid webhook signature public key | Client-Side |
-| 1002 | `INVALID_WEBHOOK_ENCRYPTION_HEADER_FORMAT` | Invalid webhook signature header | Client-Side |
-| 1003 | `UNSUPPORTED_WEBHOOK_ENCRYPTION_ALGORYTHM` | Unsupported webhook signature algorithm | Client-Side |
-| 1004 | `UNKNOWN_WEBHOOK_ENCRYPTION_PROVIDER` | Unknown webhook encryption provider | Client-Side |
-| 1005 | `WEBHOOK_ENCRYPTION_VERIFIER_INIT_ERROR` | Encryption verifier initialization error | Client-Side |
-| 1006 | `WEBHOOK_ENCRYPTION_VERIFIER_CONTENT_UPDATE_ERROR` | Error during content update in encryption verifier | Client-Side |
-| 1007 | `WEBHOOK_ENCRYPTION_SIGNATURE_VERIFICATION_FAILED` | Encryption signature verification failed | Client-Side |
-| 1008 | `INVALID_WEBHOOK_ENCRYPTION_CONTENT_SIGNATURE` | Invalid webhook content signature | Client-Side |
-| 2000 | `MISSING_WEBHOOK_ENCRYPTION_ALGORYTHM` | Missing webhook signature algorithm value | Server-Side |
+| **Exception**              | **Description**                                                                       |
+|----------------------------|---------------------------------------------------------------------------------------|
+| **ApiExceptionErrorCodes** | Lists the possible HTTP error codes an `ApiException` can generate                    |
+| **SdkExceptionErrorCodes** | Lists the possible error codes a `WeArePlanetSdkException` can generate |
 
 ### Usage Example
 ```typescript
 try {
   // SDK operation
-} catch (e: unknown) {
-  if (e instanceof WeArePlanetSdkException) {
-    if (e.code === 1001) {
-      // Handle invalid authentication key
+} catch (ex: any) {
+  if (ex instanceof ResponseError) {
+    if (ApiExceptionErrorCodes.is(ex, ApiExceptionErrorCodes.CONFLICT)) {
+      // Handle CONFLICT
     } else {
-      // Handle other known SDK errors
+      // Handle other errors
     }
-  } else {
-    // Handle other errors
   }
 }
 ```
