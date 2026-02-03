@@ -3,6 +3,7 @@
 export * from './AccountsService';
 export * from './ApplicationUsersService';
 export * from './ApplicationUsersRolesService';
+export * from './BogusExpressCheckoutService';
 export * from './ChargeAttemptsService';
 export * from './ChargeFlowLevelsService';
 export * from './ChargeFlowsService';
