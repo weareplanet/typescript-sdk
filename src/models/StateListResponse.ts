@@ -22,68 +22,68 @@
  * limitations under the License.
  */
 import { mapValues } from '../runtime';
-import type { UserSpaceRole } from './UserSpaceRole';
+import type { RestCountryState } from './RestCountryState';
 import {
-    UserSpaceRoleFromJSON,
-    UserSpaceRoleFromJSONTyped,
-    UserSpaceRoleToJSON,
-    UserSpaceRoleToJSONTyped,
-} from './UserSpaceRole';
+    RestCountryStateFromJSON,
+    RestCountryStateFromJSONTyped,
+    RestCountryStateToJSON,
+    RestCountryStateToJSONTyped,
+} from './RestCountryState';
 
 /**
  * 
  * @export
- * @interface UserSpaceRoleListResponse
+ * @interface StateListResponse
  */
-export interface UserSpaceRoleListResponse {
+export interface StateListResponse {
     /**
      * An array containing the actual response objects.
-     * @type {Array<UserSpaceRole>}
-     * @memberof UserSpaceRoleListResponse
+     * @type {Array<RestCountryState>}
+     * @memberof StateListResponse
      */
-    readonly data?: Array<UserSpaceRole>;
+    readonly data?: Array<RestCountryState>;
     /**
      * Whether there are more objects available after this set. If false, there are no more objects to retrieve.
      * @type {boolean}
-     * @memberof UserSpaceRoleListResponse
+     * @memberof StateListResponse
      */
     readonly hasMore?: boolean;
     /**
      * The applied limit on the number of objects returned.
      * @type {number}
-     * @memberof UserSpaceRoleListResponse
+     * @memberof StateListResponse
      */
     readonly limit?: number;
 }
 
 /**
- * Check if a given object implements the UserSpaceRoleListResponse interface.
+ * Check if a given object implements the StateListResponse interface.
  */
-export function instanceOfUserSpaceRoleListResponse(value: object): value is UserSpaceRoleListResponse {
+export function instanceOfStateListResponse(value: object): value is StateListResponse {
     return true;
 }
 
-export function UserSpaceRoleListResponseFromJSON(json: any): UserSpaceRoleListResponse {
-    return UserSpaceRoleListResponseFromJSONTyped(json, false);
+export function StateListResponseFromJSON(json: any): StateListResponse {
+    return StateListResponseFromJSONTyped(json, false);
 }
 
-export function UserSpaceRoleListResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): UserSpaceRoleListResponse {
+export function StateListResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): StateListResponse {
     if (json == null) {
         return json;
     }
     return {
         
-        'data': json['data'] == null ? undefined : ((json['data'] as Array<any>).map(UserSpaceRoleFromJSON)),
+        'data': json['data'] == null ? undefined : ((json['data'] as Array<any>).map(RestCountryStateFromJSON)),
         'hasMore': json['hasMore'] == null ? undefined : json['hasMore'],
         'limit': json['limit'] == null ? undefined : json['limit'],
     };
 }
 
-export function UserSpaceRoleListResponseToJSON(json: any): UserSpaceRoleListResponse {
-    return UserSpaceRoleListResponseToJSONTyped(json, false);
+export function StateListResponseToJSON(json: any): StateListResponse {
+    return StateListResponseToJSONTyped(json, false);
 }
 
-export function UserSpaceRoleListResponseToJSONTyped(value?: Omit<UserSpaceRoleListResponse, 'data'|'hasMore'|'limit'> | null, ignoreDiscriminator: boolean = false): any {
+export function StateListResponseToJSONTyped(value?: Omit<StateListResponse, 'data'|'hasMore'|'limit'> | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
