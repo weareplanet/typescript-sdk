@@ -328,6 +328,7 @@ export * from './TokenizedCardData';
 export * from './TokenizedCardDataCreate';
 export * from './TokenizedCardRequest';
 export * from './Transaction';
+export * from './TransactionAmounts';
 export * from './TransactionClientPlatformInformation';
 export * from './TransactionComment';
 export * from './TransactionCommentActive';

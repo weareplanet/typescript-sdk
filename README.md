@@ -1997,6 +1997,7 @@ Additional Api models documentation: [*link*](https://paymentshub.weareplanet.co
 * <strong>TokenizedCardDataCreate</strong>
 * <strong>TokenizedCardRequest</strong>
 * <strong>Transaction</strong>
+* <strong>TransactionAmounts</strong>
 * <strong>TransactionClientPlatformInformation</strong>
 * <strong>TransactionComment</strong>
 * <strong>TransactionCommentActive</strong>
